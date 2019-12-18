@@ -1,0 +1,7 @@
+#!/usr/bin/env python3
+
+import config
+import transmogrifier
+
+runner = transmogrifier.Runner(config.CONFIG)
+runner.go()

@@ -1,0 +1,13 @@
+# the build directory
+build/
+
+# the transmogifier checked out directory
+transmogrifier/
+
+# env file
+ENV
+
+# emacs backups
+*~
+
+__pycache__
