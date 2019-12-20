@@ -3,9 +3,6 @@
 
 TRANSMOGRIFIER_VERSION=0.9.1
 
-# Fail immediately
-set -e
-
 # check out the transmogrifier
 rm -fr transmogrifier
 git clone -b ${TRANSMOGRIFIER_VERSION} https://github.com/line72/montclair-transmogrifier.git transmogrifier
@@ -63,6 +60,7 @@ then
     git add .
     git commit -m "Building version $OUTPUT_IOS_VERSION"
     git tag $OUTPUT_IOS_VERSION && git push && git push origin refs/tags/$OUTPUT_IOS_VERSION
+    popd
 fi
 
 if [ $HAS_ANDROID = 1 ]
@@ -71,6 +69,7 @@ then
     git add .
     git commit -m "Building version $OUTPUT_ANDROID_VERSION"
     git tag $OUTPUT_ANDROID_VERSION && git push && git push origin refs/tags/$OUTPUT_ANDROID_VERSION
+    popd
 fi
 
 popd
