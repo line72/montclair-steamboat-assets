@@ -10,4 +10,4 @@ source scripts/VERSIONS
 ./scripts/run.sh
 
 # 3. Commit, tag, and push the changes
-#./scripts/commit-and-tag-repos.sh 
+./scripts/commit-and-tag-repos.sh
