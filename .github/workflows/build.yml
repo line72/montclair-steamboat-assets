@@ -1,0 +1,15 @@
+name: Build
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Builds the steamboat whitelabel versions
+      run: |
+        git config --global user.email "line72@line72.net"
+        git config --global user.name "Marcus Dillavou"
+        git config --global credential.username ${{ secrets.PAT_USERNAME }}
+        git config --global credential.helper store
+        echo "https://${{ secrets.PAT_USERNAME }}:${{ secrets.PAT_TOKEN }}@github.com" > ~/.git-credentials
+        ./build.sh
