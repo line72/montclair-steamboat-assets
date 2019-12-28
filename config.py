@@ -26,7 +26,7 @@ CONFIG = transmogrifier.Config(
     ),
     android_config = transmogrifier.MontclairAndroidConfig(
         version = '1.0.1',
-        revision = '7',
+        revision = '8',
         app_id = 'com.gotransitapp.steamboat',
         play_store_url = 'https://play.google.com/store/apps/details?id=com.gotransitapp.steamboat'
     )
