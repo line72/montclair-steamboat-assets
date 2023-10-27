@@ -1,0 +1,37 @@
+#!/bin/bash
+
+### Purpose:
+# Copy huge amount of files from source to destination directory only if
+# destination file is smaller in size than in source directory
+###
+
+src='.'
+dst=$(pwd)/tiles # Destination directory
+
+mv_if() {
+  f="${1}";
+  [ -d "$f" ] && {
+    [ ! -d "${dst}${f#$src}" ] && mkdir -p "${dst}${f#$src}";
+    return
+  }
+
+  [ ! -f "${dst}/${f#$src/}" ] && { mv -v "${f}" "${dst}/${f#$src/}"; return; }
+  fsizeSrc=$( stat -c %s "$f" )
+  fsizeDst=$( stat -c %s "${dst}/${f#$src/}" )
+  [ ${fsizeDst} -lt ${fsizeSrc} ] && mv -fv "${f}" "${dst}/${f#$src/}"
+}
+
+export -f mv_if
+export src
+export dst
+
+pushd OUT
+
+for i in [0123456789]*
+do
+    pushd $i
+    find . -exec bash -c 'mv_if "$0"' {} \;
+    popd
+done
+
+popd

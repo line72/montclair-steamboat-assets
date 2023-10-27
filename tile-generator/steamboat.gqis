@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
 # Create tilesets for zoom 0 through 18
-for i in $(seq 0 18)
+#for i in $(seq 0 18)
+for i in $(seq 17 18)
 do
     qgis_process run qgis:tilesxyzmbtiles --distance_units=meters --area_units=m2 --ellipsoid=EPSG:7030 --project_path=$(pwd)/world-toner-tiles.qgz --EXTENT='-11986254.6912,-11857792.2638,4895243.5015,5003656.0517 [EPSG:3857]' --ZOOM_MIN=$i --ZOOM_MAX=$i --DPI=96 --BACKGROUND_COLOR='rgba( 0, 0, 0, 0.00 )' --TILE_FORMAT=0 --QUALITY=75 --METATILESIZE=4 --OUTPUT_FILE=$(pwd)/steamboat-$i.mbtiles
 done;
